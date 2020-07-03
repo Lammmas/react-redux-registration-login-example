@@ -76,16 +76,17 @@ export function configureFakeBackend() {
                     let newUser = JSON.parse(opts.body);
 
                     // validation
-                    let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
+                    const newUsers = JSON.parse(localStorage.getItem('users')) || [];
+                    let duplicateUser = newUsers.filter(user => { return user.username === newUser.username; }).length;
                     if (duplicateUser) {
                         reject('Username "' + newUser.username + '" is already taken');
                         return;
                     }
 
                     // save new user
-                    newUser.id = users.length ? Math.max(...users.map(user => user.id)) + 1 : 1;
-                    users.push(newUser);
-                    localStorage.setItem('users', JSON.stringify(users));
+                    newUser.id = newUsers.length ? Math.max(...newUsers.map(user => user.id)) + 1 : 1;
+                    newUsers.push(newUser);
+                    localStorage.setItem('users', JSON.stringify(newUsers));
 
                     // respond 200 OK
                     resolve({ ok: true, text: () => Promise.resolve() });

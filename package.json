@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "e2e": "cypress run --env baseUrl=localhost:8080"
   },
   "dependencies": {
     "history": "^4.10.1",

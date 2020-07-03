@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+let uid = 1
+Cypress.Commands.add('register', ({ firstName, lastName, username, password }) => {
+  const users = JSON.parse(localStorage.getItem('users')) || []
+  localStorage.setItem('users', JSON.stringify([...users, { id: uid++, firstName, lastName, username, password }]))
+})
+
+Cypress.Commands.add('clearStorage', key => {
+  localStorage.setItem(key, [])
+})
+
+Cypress.Commands.add('login', user => {
+  localStorage.setItem('user', JSON.stringify(user));
+})

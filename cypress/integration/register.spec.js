@@ -21,7 +21,7 @@ describe('Register', () => {
     cy.get('[data-cy=alert-success]').should('be.visible')
   })
 
-  it('Registration: Failure', () => {
+  it('Registration: Failure -> wrong credentials', () => {
     // add user
     const user = { firstName: 'John', lastName: 'Smith', username: 'Doctor', password: '42' }
     cy.register(user)
@@ -36,6 +36,17 @@ describe('Register', () => {
     cy.get('[data-cy=alert-danger]').should('be.visible')
   })
 
+  it('Registration: Failure -> incomplete form', () => {
+    // fill form
+    cy.get('[data-cy=firstName]').type('Inspector')
+    cy.get('[data-cy=lastName]').type('Spacetime')
+    cy.get('[data-cy=username]').type('Doctor')
+    // submit form
+    cy.get('[data-cy=register-btn]').click()
+    // assert error registration
+    cy.get('[data-cy=error-password]').should('be.visible')
+  })
+
   it('Registration: Abort', () => {
     cy.get('[data-cy=firstName]').type('Inspector')
     cy.get('[data-cy=lastName]').type('Spacetime')
@@ -43,6 +54,7 @@ describe('Register', () => {
     cy.get('[data-cy=password]').type('12345')
 
     cy.get('[data-cy=register-cancel]').click()
+    cy.get('[data-cy=login-btn]').should('be.visible')
     cy.get('[data-cy=register-link]').click()
 
     cy.get('[data-cy=firstName]').should('be.empty')

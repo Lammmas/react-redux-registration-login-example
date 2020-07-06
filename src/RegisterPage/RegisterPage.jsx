@@ -75,7 +75,7 @@ class RegisterPage extends React.Component {
                         <label htmlFor="password">Password</label>
                         <input type="password" data-cy="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
                         {submitted && !user.password &&
-                            <div className="help-block">Password is required</div>
+                            <div className="help-block" data-cy="error-password">Password is required</div>
                         }
                     </div>
                     <div className="form-group">

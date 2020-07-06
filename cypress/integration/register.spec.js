@@ -70,9 +70,20 @@ describe('Register & Login', () => {
   })
 
   it('Should register and then login', () => {
-    // fill register form
-    // click submit
-    // fill login form
-    // assert login
+    cy.get('[data-cy=register-link]').click()
+
+    cy.get('[data-cy=firstName]').type('Inspector')
+    cy.get('[data-cy=lastName]').type('Spacetime')
+    cy.get('[data-cy=username]').type('tim')
+    cy.get('[data-cy=password]').type('12345')
+    cy.get('[data-cy=register-btn]').click()
+    cy.get('[data-cy=alert-success]').should('be.visible')
+
+    cy.reload() // bug from the app
+    cy.get('[data-cy=username]').type('tim')
+    cy.get('[data-cy=password]').type('12345')
+    cy.get('[data-cy=login-btn]').click()
+
+    cy.get('[data-cy=logged-in-header]').should('be.visible')
   })
 })

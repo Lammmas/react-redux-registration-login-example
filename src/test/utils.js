@@ -26,6 +26,7 @@ export async function navigateToRegisterPage () {
 export async function loginSuccessfully () {
     await page.goto(URL, { waitUntil: "domcontentloaded" });
 
+    await page.waitForSelector('input[name=username]');
     await page.focus('input[name=username]');
     await page.keyboard.type(testUser.username);
     await page.focus('input[name=password]');

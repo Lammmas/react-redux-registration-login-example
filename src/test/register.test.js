@@ -1,7 +1,7 @@
 import { testUser, timeout } from './constants.js';
 import { loginSuccessfully, navigateToRegisterPage, removeUsersFromLocalStorage } from './utils.js';
 
-describe.skip("When user is on homepage", () => {
+describe("When user is on homepage", () => {
     beforeEach(async () => {
         await page.goto(URL, { waitUntil: "domcontentloaded" });
     });

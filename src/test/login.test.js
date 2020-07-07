@@ -38,12 +38,7 @@ describe("When user is on homepage", () => {
             const p = await page.$("p");
             const subtitle = await page.evaluate(p => p.innerHTML, p);
             expect(subtitle).toBe("You're logged in with React!!");
-
-            //expect(false);
         }, timeout);
-
-
-        //test("and they should see their user under 'All registered users:' field", async () => {}, timeout);
     });
 });
 

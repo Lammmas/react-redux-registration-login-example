@@ -1,5 +1,5 @@
 import { testUser, timeout } from './constants.js';
-import { loginSuccessfully, navigateToRegisterPage, removeUsersFromLocalStorage } from './utils.js';
+import { login, navigateToRegisterPage, removeUsersFromLocalStorage } from './utils.js';
 
 describe("When user is on homepage", () => {
     beforeEach(async () => {

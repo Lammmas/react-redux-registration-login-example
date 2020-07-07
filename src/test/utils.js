@@ -23,7 +23,7 @@ export async function navigateToRegisterPage () {
     ]);
 };
 
-export async function loginSuccessfully () {
+export async function login () {
     await page.goto(URL, { waitUntil: "domcontentloaded" });
 
     await page.waitForSelector('input[name=username]');

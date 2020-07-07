@@ -1,4 +1,4 @@
-import { addUsersToLocalStorage, removeUsersFromLocalStorage, loginSuccessfully } from "./utils.js";
+import { addUsersToLocalStorage, removeUsersFromLocalStorage, login } from "./utils.js";
 import { timeout, testUser } from './constants.js';
 
 describe("When user is on homepage", () => {
@@ -29,7 +29,7 @@ describe("When user is on homepage", () => {
 
     describe("and enters valid username/password", () => {
         test("they should redirected in the homepage", async () => {
-            await loginSuccessfully();
+            await login();
             
             const header = await page.$("h1");
             const title = await page.evaluate(header => header.innerHTML, header);

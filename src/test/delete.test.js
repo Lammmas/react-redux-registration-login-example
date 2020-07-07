@@ -1,10 +1,10 @@
-const { addUsersToLocalStorage, loginSuccessfully } = require("./utils");
+const { addUsersToLocalStorage, login } = require("./utils");
 const { timeout, testUser } = require("./constants");
 
 describe("When a user is logged in", () => {
     beforeAll(async () => {
         await addUsersToLocalStorage();
-        await loginSuccessfully();
+        await login();
     });
 
     describe("and deletes a user", () => {
@@ -15,7 +15,7 @@ describe("When a user is logged in", () => {
 
             await logout();
             await page.waitFor(3000);
-            await loginSuccessfully();
+            await login();
 
             let el = await page.$('.alert');
             const text = await (await el.getProperty('textContent')).jsonValue();
